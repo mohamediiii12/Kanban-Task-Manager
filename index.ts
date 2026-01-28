@@ -46,6 +46,7 @@ let tasks: tasks = {
 };
 if (localStorage.getItem("tasks")) {
   tasks = JSON.parse(localStorage.getItem("tasks")!) as tasks;
+  renderTasks();
 }
 function emptyMessage(col: column): void {
   const tasks = document.getElementById(`tasks-${col}`) as HTMLElement;

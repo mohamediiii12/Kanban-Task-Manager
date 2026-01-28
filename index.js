@@ -20,6 +20,7 @@ let tasks = {
 };
 if (localStorage.getItem("tasks")) {
     tasks = JSON.parse(localStorage.getItem("tasks"));
+    renderTasks();
 }
 function emptyMessage(col) {
     const tasks = document.getElementById(`tasks-${col}`);
