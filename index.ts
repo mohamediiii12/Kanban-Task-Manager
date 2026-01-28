@@ -110,7 +110,7 @@ function renderTasks() {
   ["todo", "in-progress", "completed"].forEach((col) => {
     if (tasks[col as column].length === 0) {
       emptyMessage(col as column);
-    }
+    }else{
     const taskColumn = document.getElementById(
       `tasks-${col as column}`,
     ) as HTMLElement;
@@ -235,7 +235,9 @@ function renderTasks() {
             </div>`;
     });
     taskColumn.innerHTML = box;
+   }
   });
+
 }
 
 function showBadgeState(date: string, completed: boolean) {

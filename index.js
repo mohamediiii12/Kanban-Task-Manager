@@ -84,13 +84,14 @@ function renderTasks() {
         if (tasks[col].length === 0) {
             emptyMessage(col);
         }
-        const taskColumn = document.getElementById(`tasks-${col}`);
-        console.log(taskColumn);
-        let box = ``;
-        document.querySelector(`[data-status="${col}"] p`).textContent =
-            `${tasks[col].length} tasks`;
-        tasks[col].forEach((task) => {
-            box += `<div
+        else {
+            const taskColumn = document.getElementById(`tasks-${col}`);
+            console.log(taskColumn);
+            let box = ``;
+            document.querySelector(`[data-status="${col}"] p`).textContent =
+                `${tasks[col].length} tasks`;
+            tasks[col].forEach((task) => {
+                box += `<div
               class="group bg-white rounded-xl p-4 shadow-sm border border-slate-100 hover:shadow-md hover:border-slate-200 transition-all duration-200 ring-2 ring-red-100 border-red-200"
               data-task-id="${task.id}">
               <!-- Top Bar -->
@@ -130,26 +131,26 @@ function renderTasks() {
               <div class="flex flex-wrap items-center gap-2 mb-4">
                 <!-- Priority Badge -->
                 ${task.priority === "low"
-                ? `<span
+                    ? `<span
                   class="bg-blue-50 text-blue-600 text-[10px] font-semibold px-2 py-1 rounded-full flex items-center gap-1.5 uppercase tracking-wide">
                   <span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
                   Low
                 </span>`
-                : ``}
+                    : ``}
                 ${task.priority === "medium"
-                ? `<span
+                    ? `<span
                   class="bg-amber-50 text-amber-600 text-[10px] font-semibold px-2 py-1 rounded-full flex items-center gap-1.5 uppercase tracking-wide">
                   <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
                   Medium
                 </span>`
-                : ``}
+                    : ``}
                 ${task.priority === "high"
-                ? `<span
+                    ? `<span
                   class="bg-red-50 text-red-600 text-[10px] font-semibold px-2 py-1 rounded-full flex items-center gap-1.5 uppercase tracking-wide">
                   <span class="w-1.5 h-1.5 rounded-full bg-red-500"></span>
                   High Priority
                 </span>`
-                : ``}
+                    : ``}
                 
                 ${showBadgeState(task.date, task.completed)}
                </div>
@@ -166,33 +167,34 @@ function renderTasks() {
               <!-- Action Buttons -->
               <div class="flex flex-wrap gap-2">
                 ${col !== "todo"
-                ? `<button
+                    ? `<button
                   class="status-btn text-[11px] px-3 py-2 rounded-lg font-semibold transition-all duration-200 flex items-center gap-1.5 hover:scale-105 active:scale-95 bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-slate-700"
                   data-task-id="${task.id}" onclick="changeColumn('${col}','todo',${task.id})" data-status="todo">
                   <i class="fa-solid fa-arrow-rotate-left pointer-events-none"></i>
                   <span class="pointer-events-none">To Do</span>
                 </button>`
-                : ``}
+                    : ``}
                 ${col !== "in-progress"
-                ? `<button
+                    ? `<button
                   class="status-btn text-[11px] px-3 py-2 rounded-lg font-semibold transition-all duration-200 flex items-center gap-1.5 hover:scale-105 active:scale-95 bg-amber-100 text-amber-700 hover:bg-amber-200"
                   data-task-id="${task.id}" onclick="changeColumn('${col}','in-progress',${task.id})" data-status="in-progress">
                   <i class="fa-solid fa-play pointer-events-none"></i>
                   <span class="pointer-events-none">Start</span>
                 </button>`
-                : ``}
+                    : ``}
                 ${col !== "completed"
-                ? `<button
+                    ? `<button
                   class="status-btn text-[11px] px-3 py-2 rounded-lg font-semibold transition-all duration-200 flex items-center gap-1.5 hover:scale-105 active:scale-95 bg-emerald-100 text-emerald-700 hover:bg-emerald-200"
                   data-task-id="${task.id}" onclick="changeColumn('${col}','completed',${task.id})" data-status="completed">
                   <i class="fa-solid fa-check pointer-events-none"></i>
                   <span class="pointer-events-none">Complete</span>
                 </button>`
-                : ``}  
+                    : ``}  
               </div>
             </div>`;
-        });
-        taskColumn.innerHTML = box;
+            });
+            taskColumn.innerHTML = box;
+        }
     });
 }
 function showBadgeState(date, completed) {
@@ -368,4 +370,4 @@ function showNotification(t, e) {
                 setTimeout(() => i.remove(), 500);
         }, 3000);
 }
-export {};
+
